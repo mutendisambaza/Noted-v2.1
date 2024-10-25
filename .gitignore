@@ -1,0 +1,69 @@
+# Node.js (frontend dependencies)
+node_modules/
+build/
+dist/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# OS generated files (macOS and Linux)
+.DS_Store
+Thumbs.db
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Production build files
+/build
+/dist
+
+# Tailwind CSS
+tailwind.config.js
+postcss.config.js
+
+# Ignore frontend environment variables
+.env.local
+.env.development
+.env.production
+
+# Ignore .next/ and .nuxt if using Next.js or Nuxt
+.next/
+.nuxt/
+
+# Python backend
+__pycache__/
+*.pyc
+instance/
+venv/
+*.sqlite3
+*.db
+
+# Flask & Backend
+api/__pycache__/
+api/*.pyc
+api/instance/
+api/.env
+
+# Flask logs
+logs/
+*.log
+
+# Ignore virtual environments
+venv/
+env/
+
+# Python environment variables
+.env
+*.env
+
+# Flask build files
+*.pyc
+*.pyo

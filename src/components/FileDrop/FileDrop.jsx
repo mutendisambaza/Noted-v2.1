@@ -7,30 +7,43 @@ const FileDrop = () => {
     const [selectedFile, setSelectedFile] = useState(null);  // State to hold the selected file
     const [statusMessage, setStatusMessage] = useState('');  // State to hold the status message
 
-    // Define max size for 1 hour MP3 audio (128 kbps ~ 60 MB)
-    const MAX_FILE_SIZE = 60 * 1024 * 1024; // 60 MB in bytes
+    const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB in bytes
 
 
     // Handler for file selection (both drop and manual selection)
     const handleDrop = (event) => {
         event.preventDefault();
         const file = event.target.files ? event.target.files[0] : event.dataTransfer.files[0];
-
+    
+        // Define the allowed file types and maximum file size
+        const allowedFileTypes = [
+            'audio/mpeg',  // .mp3
+            'audio/mp4',   // .mp4
+            'video/mp4',   // .mp4
+            'audio/mpg',   // .mpga
+            'audio/x-m4a', // .m4a
+            'audio/wav',   // .wav
+            'audio/webm',  // .webm
+        ];
+        const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB
+    
         // Validate the file type
-        if (file.type !== 'audio/mpeg') {
-            setStatusMessage('Only .mp3 files are allowed.');
+        if (!allowedFileTypes.includes(file.type)) {
+            setStatusMessage('Unsupported file type. Allowed types: mp3, mp4, mpeg, mpga, m4a, wav, webm.');
             return;
         }
-
-        // Validate the file size (under 60 MB)
+    
+        // Validate the file size (under 25 MB)
         if (file.size > MAX_FILE_SIZE) {
-            setStatusMessage('File size exceeds the maximum allowed size for 1 hour of audio (60 MB).');
+            setStatusMessage('File size exceeds the maximum allowed size of 25 MB.');
             return;
         }
-
+    
+        // If all checks pass, set the selected file and update status
         setSelectedFile(file);
         setStatusMessage('File uploaded successfully.');
     };
+    
 
     const handleTranscriptionFileDrop = async () => {
         if (!selectedFile) {
